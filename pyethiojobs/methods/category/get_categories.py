@@ -1,7 +1,6 @@
-from typing import Any, List
+from typing import List
 
 from bs4 import Tag
-from rich.pretty import pprint
 
 from pyethiojobs.scaffold import Scaffold
 from pyethiojobs.types import Category
@@ -14,11 +13,10 @@ class GetCategories(Scaffold):
         """
         res = await self._process_request(url="")
         soup = self.soup(res.text)
-        div: Tag = soup.find("div", {"class": "browse_by panel panel-default"})
-        uls = div.find_all("ul", {"class": "list-group"})
+        div: Tag = soup.find("div", {"id": "job_category"})
+        uls: Tag = div.find("ul", {"class": "list-group"})
         categories = []
-        for ul in uls:
-            anchor = ul.find("a", class_="list-group-item")
+        for anchor in uls.find_all("a", {"class": "list-group-item"}):
             name = anchor["title"]
             link = anchor["href"]
             count = int(anchor.find("span").text)
