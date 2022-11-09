@@ -1,10 +1,8 @@
 import json
 import re
-from os import truncate
 from typing import List
 
-from bs4 import BeautifulSoup, Tag
-from rich.pretty import pprint
+from bs4 import Tag
 
 from pyethiojobs.scaffold import Scaffold
 from pyethiojobs.types import Identifier, Job, Location
@@ -24,7 +22,6 @@ class GetJobs(Scaffold):
             job = json.loads(remove_newline(job.text))
             link = tr.find("a", {"title": "View Job"})
             work_place = tr.find("span", {"class": "work-palce captions-field"})
-            # pprint(trs)
             experience = tr.find(
                 "span", {"class": "captions-field"}, text=re.compile("Level")
             ).text

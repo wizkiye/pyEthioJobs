@@ -1,8 +1,8 @@
 import httpx
 from bs4 import BeautifulSoup
 
-from .scaffold import Scaffold
 from .methods import Methods
+from .scaffold import Scaffold
 
 
 class EthioJobs(Methods, Scaffold):
@@ -18,7 +18,10 @@ class EthioJobs(Methods, Scaffold):
         self, url: str, method="GET", **kwargs
     ) -> httpx.Response:
         if "http" in url:
-            return await self._session.request(method, url, **kwargs)
+            return await self._session.request(method, url, timeout=30, **kwargs)
         return await self._session.request(
-            method=method, url=self._BASE_URL.format(url), **kwargs
+            method=method,
+            url=self._BASE_URL.format(url),
+            timeout=30,
+            **kwargs,
         )

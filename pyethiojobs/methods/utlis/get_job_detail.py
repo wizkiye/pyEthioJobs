@@ -1,10 +1,9 @@
 import json
 import re
 
-from pyethiojobs.utils import remove_newline
-
 from pyethiojobs.scaffold import Scaffold
-from pyethiojobs.types import JobDetails, Location, Identifier
+from pyethiojobs.types import Identifier, JobDetails, Location
+from pyethiojobs.utils import remove_newline
 
 
 class GetJobsDetails(Scaffold):
@@ -16,13 +15,6 @@ class GetJobsDetails(Scaffold):
         views = soup.find("span", {"class": "jobs_by"}).text
         id = int(re.search(r"(\d+)\s+\|", views).group(1))
         views = int(re.search(r"(\d+)\s+Views", views).group(1))
-        print(
-            len(
-                soup.find("div", {"id": "col-wide"}).find_all(
-                    "div", {"class": "displayFieldBlock"}
-                )
-            )
-        )
         (category, location, career_level, employment_type, salary) = soup.find(
             "div", {"id": "col-wide"}
         ).find_all("div", {"class": "displayFieldBlock"})
@@ -40,7 +32,7 @@ class GetJobsDetails(Scaffold):
             ),
             date_posted=job["datePosted"],
             valid_through=job["validThrough"],
-            type=job.get("employmentType"),
+            type=employment_type.find("div", {"class": "displayField"}).text,
             hiring_organization=job["hiringOrganization"]["name"],
             link=self._BASE_URL.format(f"display-job/{id}"),
             description=job["description"],
@@ -51,4 +43,5 @@ class GetJobsDetails(Scaffold):
             print_link=self._BASE_URL.format(f"print-job/?listing_id={id}"),
             category=category.text.split(":")[1].strip(),
             salary=salary.text.split(":")[1].strip(),
+            career_level=career_level.find("div", {"class": "displayField"}).text,
         )

@@ -12,11 +12,19 @@ class GetGovernmentJobs(Scaffold):
         soup = self.soup(res.text)
         div: Tag = soup.find("div", {"id": "public_latest"})
         gov_jobs = []
-        for job in div.find_all("div", {"class": "single_listing"}):
+        for job in div.find_all("div", {"class": "single_listing col-md-6"}):
             anchor = job.find("a")
             link = anchor.get("href")
             job_ = anchor.text
-            company = job.find("p", {"class": "no-marign"}).text
-            posted = job.find("span", {"class": "pull-right"}).text
-            gov_jobs.append(GovJob(company=company, link=link, job=job_, posted=posted))
+            company = job.find("p", {"class": "no-marign"})
+            posted = job.find("span", {"class": "pull-right"})
+            gov_jobs.append(
+                GovJob(
+                    company=company.text.strip(),
+                    link=link,
+                    job=job_.strip(),
+                    posted=posted,
+                    base=self,
+                )
+            )
         return gov_jobs
