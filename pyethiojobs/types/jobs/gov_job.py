@@ -1,4 +1,7 @@
+from typing import Union
+
 import pyethiojobs
+from pyethiojobs import types
 
 
 class GovJob:
@@ -16,5 +19,7 @@ class GovJob:
         self.posted = posted
         self._base = base
 
-    def get_detail(self):
-        pass
+    async def get_details(self) -> Union["types.GovJobDetails", None]:
+        if self._base is not None:
+            res = await self._base._process_request(url=self.link)
+            return self._base._get_gov_job_details(res.text)

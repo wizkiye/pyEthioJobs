@@ -1,2 +1,2 @@
 from .category import Category
-from .jobs import Job, Identifier, Location, JobDetails
+from .jobs import GovJobDetails, Identifier, Job, JobDetails, JobType, Location

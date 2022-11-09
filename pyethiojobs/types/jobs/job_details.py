@@ -1,4 +1,3 @@
-import pyethiojobs
 from pyethiojobs import types
 
 
@@ -20,6 +19,7 @@ class JobDetails:
         location: "types.Location",
         work_place: str,
         type: str,
+        career_level: str,
     ):
         self.id = id
         self.print_link = print_link
@@ -36,3 +36,4 @@ class JobDetails:
         self.hiring_organization = hiring_organization
         self.location = location
         self.type = type
+        self.career_level = career_level

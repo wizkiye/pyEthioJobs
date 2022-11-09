@@ -32,5 +32,6 @@ class Job:
         self.type = type
 
     async def get_details(self):
-        res = await self._base._process_request(url=self.link)
-        return self._base._get_job_details(res.text)
+        if self._base is not None:
+            res = await self._base._process_request(url=self.link)
+            return self._base._get_job_details(res.text)
