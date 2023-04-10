@@ -11,7 +11,7 @@ class GovJob:
         link: str,
         job: str,
         posted: str,
-        base: "pyethiojobs.EthioJobs" = None,
+        base: "pyethiojobs.pyEthioJobs" = None,
     ):
         self.company = company
         self.link = link

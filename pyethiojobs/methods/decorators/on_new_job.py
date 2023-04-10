@@ -10,7 +10,7 @@ class OnNewJob(Scaffold):
             .. code-block:: python
                 :emphasize-lines: 4-5
                 ...
-                app = EthioJobs(...)
+                app = pyEthioJobs(...)
                 ...
                 @app.on_new_jobs()
                 async def handler(job: Job):

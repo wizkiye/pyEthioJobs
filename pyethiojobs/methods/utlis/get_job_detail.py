@@ -15,9 +15,10 @@ class GetJobsDetails(Scaffold):
         views = soup.find("span", {"class": "jobs_by"}).text
         id = int(re.search(r"(\d+)\s+\|", views).group(1))
         views = int(re.search(r"(\d+)\s+Views", views).group(1))
-        (category, location, career_level, employment_type, salary) = soup.find(
-            "div", {"id": "col-wide"}
-        ).find_all("div", {"class": "displayFieldBlock"})
+        div = soup.find("div", {"id": "col-wide"})
+        (category, location, career_level, employment_type, salary) = div.find_all(
+            "div", {"class": "displayFieldBlock"}
+        )
         return JobDetails(
             id=id,
             views=views,

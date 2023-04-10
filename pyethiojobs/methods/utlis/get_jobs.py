@@ -11,6 +11,8 @@ from pyethiojobs.utils import remove_newline
 
 class GetJobs(Scaffold):
     def _get_jobs(self, html) -> List[Job]:
+        if "There are no postings meeting the criteria you specified" in html:
+            return []
         soup = self.soup(
             html.split("<!-- start: JOB INFO -->")[1].split("<!-- end: JOB INFO -->")[0]
         )

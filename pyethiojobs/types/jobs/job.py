@@ -1,3 +1,5 @@
+from typing import Union
+
 import pyethiojobs
 from pyethiojobs import types
 
@@ -14,9 +16,9 @@ class Job:
         valid_through: str,
         hiring_organization: str,
         location: "types.Location",
-        work_place: str,
+        work_place: Union[str, None],
         type: str,
-        base: "pyethiojobs.EthioJobs" = None,
+        base: "pyethiojobs.pyEthioJobs" = None,
     ):
         self.experience = experience
         self.work_place = work_place
