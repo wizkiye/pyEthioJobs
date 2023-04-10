@@ -1,10 +1,11 @@
 from typing import Callable
 
+from pyethiojobs.filters import Filter
 from pyethiojobs.scaffold import Scaffold
 
 
 class OnNewJob(Scaffold):
-    def on_new_jobs(self, filters=None) -> Callable:
+    def on_new_jobs(self, filters: Filter = None) -> Callable:
         """Decorator for handling when a new job is available
         Example:
             .. code-block:: python
@@ -13,15 +14,13 @@ class OnNewJob(Scaffold):
                 app = pyEthioJobs(...)
                 ...
                 @app.on_new_jobs()
-                async def handler(job: Job):
+                async def handler(inst: pyEthioJobs , job: Job):
                     print(message.__dict__)
                 ...
                 app.run(...)
         """
 
         method = "NEW_JOB_HANDLER"
-
-        # filters = card_recived & filters if filters else card_recived
 
         def decorator(func: Callable) -> Callable:
             if self is not None:

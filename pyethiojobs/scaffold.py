@@ -3,6 +3,7 @@ from typing import List
 import httpx
 from bs4 import BeautifulSoup
 
+from pyethiojobs.handler import HandlersHolder
 from pyethiojobs.types import Job, JobDetails
 
 
@@ -11,7 +12,7 @@ class Scaffold:
         self._session = None
         self._soup = None
         self._BASE_URL = "https://www.ethiojobs.net/{}"
-        self._on_event_update = None
+        self._on_event_update: HandlersHolder = None
 
     async def _process_request(
         self, url: str, method="GET", **kwargs

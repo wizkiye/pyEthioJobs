@@ -1,6 +1,7 @@
 import httpx
 from bs4 import BeautifulSoup
 
+from .handler import HandlersHolder
 from .methods import Methods
 from .scaffold import Scaffold
 
@@ -10,6 +11,7 @@ class EthioJobs(Methods, Scaffold):
         super().__init__()
         self._session = httpx.AsyncClient()
         self._soup = BeautifulSoup
+        self._on_event_update = HandlersHolder(self)
 
     def soup(self, html: str) -> BeautifulSoup:
         return self._soup(html, "xml")

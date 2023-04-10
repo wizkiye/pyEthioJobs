@@ -8,7 +8,7 @@ class HandlersHolder:
     def __init__(self, base):
         self._base = base
         self._events: Dict[str, List] = {
-            "ON_NEW_JOB": [],
+            "NEW_JOB_HANDLER": [],
         }
 
     def set_handler(
