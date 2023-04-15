@@ -1,6 +1,6 @@
 
 <p>    
-<a href="https://github.com/wizkiye/pyqefira.git">    
+<a href="https://github.com/wizkiye/pyethiojobs.git">    
 <img src="./.github/images/logo.png" alt="PyEthioJobs">    
 </a>    
 <br>    
