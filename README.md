@@ -1,5 +1,5 @@
 
-<p>    
+<p align="center">    
 <a href="https://github.com/wizkiye/pyethiojobs.git">    
 <img height="500" src="./.github/images/logo.png" alt="PyEthioJobs">    
 </a>    
