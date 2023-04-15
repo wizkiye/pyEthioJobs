@@ -1,8 +1,5 @@
 from typing import Union
 
-import pyethiojobs
-from pyethiojobs import types
-
 
 class Job:
     def __init__(
@@ -37,3 +34,12 @@ class Job:
         if self._base is not None:
             res = await self._base._process_request(url=self.link)
             return self._base._get_job_details(res.text)
+
+    def __repr__(self):
+        return f"Job(title={self.title}, link={self.link})"
+
+    def __str__(self):
+        return f"Job(title={self.title}, link={self.link})"
+
+    def __eq__(self, other):
+        return self.title == other.title and self.link == other.link

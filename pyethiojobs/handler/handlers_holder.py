@@ -23,12 +23,10 @@ class HandlersHolder:
             event for event in self._events[event_name] if event["func"] != func
         ]
 
-    async def incoming_job_handler(self, message: Job):
-        for event_name, events in self._events.items():
-            for event in events:
-                if event.get("filters"):
-                    res = await event["filters"](self._base, message)
-                    if res:
-                        await event["func"](self._base, message)
-                else:
-                    await event["func"](self._base, message)
+    async def incoming_job_handler(self, job: Job):
+        for event in self._events["NEW_JOB_HANDLER"]:
+            if event["filters"] is not None:
+                if event["filters"](job):
+                    await event["func"](job)
+            else:
+                await event["func"](job)

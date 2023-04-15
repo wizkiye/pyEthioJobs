@@ -1,11 +1,14 @@
+from typing import List
+
 from pyethiojobs import types
 from pyethiojobs.scaffold import Scaffold
+from pyethiojobs.types import Job
 
 
 class GetSearch(Scaffold):
     async def search(
         self, query: str, limit: int = 10, employment_type: types.EmploymentType = None
-    ):
+    ) -> List[Job]:
         url = self._BASE_URL.format("search-results-jobs/")
         params = {
             "action": "search",
