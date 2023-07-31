@@ -1,6 +1,7 @@
 import httpx
 from bs4 import BeautifulSoup
 
+from .errors import UnknownError
 from .handler import HandlersHolder
 from .methods import Methods
 from .scaffold import Scaffold
@@ -21,9 +22,19 @@ class EthioJobs(Methods, Scaffold):
     ) -> httpx.Response:
         if "http" in url:
             return await self._session.request(method, url, timeout=30, **kwargs)
-        return await self._session.request(
-            method=method,
-            url=self._BASE_URL.format(url),
-            timeout=30,
-            **kwargs,
-        )
+        try:
+            return await self._session.request(
+                method=method,
+                url=self._BASE_URL.format(url),
+                timeout=30,
+                **kwargs,
+            )
+        except httpx.HTTPError:
+            return await self._session.request(
+                method=method,
+                url=self._BASE_URL.format(url),
+                timeout=30,
+                **kwargs,
+            )
+        except Exception as e:
+            raise UnknownError(str(e))

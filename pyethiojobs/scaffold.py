@@ -19,15 +19,37 @@ class Scaffold:
     async def _process_request(
         self, url: str, method="GET", **kwargs
     ) -> httpx.Response:
+        """
+        Process a request.
+        :param url: URL to request.
+        :param method: Method to use. Default is GET.
+        :param kwargs: Keyword arguments to pass to the request.
+        :return:
+        """
         pass
 
     def soup(self, html: str) -> BeautifulSoup:
+        """
+        Get a BeautifulSoup object from an HTML string.
+        :param html: HTML string.
+        :return:
+        """
         pass
 
     def _get_jobs(self, html) -> List[Job]:
+        """
+        Get jobs from HTML.
+        :param html:
+        :return:
+        """
         pass
 
     def _get_job_details(self, html) -> JobDetails:
+        """
+        Get job details from HTML.
+        :param html:
+        :return:
+        """
         pass
 
     async def get_categories(self) -> List[Category]:

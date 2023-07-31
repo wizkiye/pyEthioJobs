@@ -1,5 +1,5 @@
 from typing import Union
-
+from pyethiojobs import types
 
 class Job:
     def __init__(
