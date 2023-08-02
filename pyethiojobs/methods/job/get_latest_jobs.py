@@ -36,6 +36,7 @@ class GetLatestJobs(Scaffold):
             )
             latest_jobs.append(
                 Job(
+                    job_id=re.search(r"\/(\d+)\/", link["href"]).group(1),
                     title=job["title"].strip(),
                     description=job["description"],
                     identifier=Identifier(

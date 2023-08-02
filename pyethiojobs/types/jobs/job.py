@@ -1,9 +1,12 @@
 from typing import Union
+
 from pyethiojobs import types
+
 
 class Job:
     def __init__(
         self,
+        job_id: str,
         title: str,
         description: str,
         link: str,
@@ -17,6 +20,7 @@ class Job:
         type: str,
         base: "pyethiojobs.pyEthioJobs" = None,
     ):
+        self.job_id = job_id
         self.experience = experience
         self.work_place = work_place
         self.title = title

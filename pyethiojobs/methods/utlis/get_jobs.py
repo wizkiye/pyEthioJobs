@@ -25,10 +25,15 @@ class GetJobs(Scaffold):
             link = tr.find("a", {"title": "View Job"})
             work_place = tr.find("span", {"class": "work-palce captions-field"})
             experience = tr.find(
-                "span", {"class": "captions-field"}, text=re.compile("Level")
-            ).text
+                "span",
+                {"class": "captions-field"},
+                text=re.compile("Level"),
+                recursive=True,
+            )
+            experience = experience.text.strip() if experience else None
             jobs.append(
                 Job(
+                    job_id=re.search(r"\/(\d+)\/", link["href"]).group(1),
                     title=job["title"].strip(),
                     description=job["description"],
                     identifier=Identifier(
