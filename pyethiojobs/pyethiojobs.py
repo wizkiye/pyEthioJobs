@@ -15,7 +15,7 @@ class EthioJobs(Methods, Scaffold):
         self._on_event_update = HandlersHolder(self)
 
     def soup(self, html: str) -> BeautifulSoup:
-        return self._soup(html, "xml")
+        return self._soup(html, "lxml")
 
     async def _process_request(
         self, url: str, method="GET", **kwargs
