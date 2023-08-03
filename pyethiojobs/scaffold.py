@@ -108,6 +108,15 @@ class Scaffold:
         """
         pass
 
+    def convert_to_pdf(self, job: Union[str, JobDetails], filename: str) -> str:
+        """
+        Convert a job to PDF.
+        :param job: Job to convert.
+        :param filename: Filename to save the PDF to.
+        :return: Path to the PDF.
+        """
+        pass
+
     def run(self, poll_interval: int = 60) -> None:
         """
         Run the listener.

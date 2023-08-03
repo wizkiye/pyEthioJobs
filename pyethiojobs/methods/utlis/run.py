@@ -1,7 +1,5 @@
 import asyncio
 
-from rich.pretty import pprint
-
 from pyethiojobs.scaffold import Scaffold
 
 
