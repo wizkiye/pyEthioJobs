@@ -8,7 +8,7 @@ def read_file(filename: str) -> str:
 
 setup(
     name="pyEthioJobs",
-    version="0.0.5",
+    version="0.0.6",
     packages=find_packages(),
     url="https://github.com/wizkiye/pyEthioJobs",
     license="",
