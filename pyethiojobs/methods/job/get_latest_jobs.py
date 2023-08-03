@@ -25,7 +25,7 @@ class GetLatestJobs(Scaffold):
         for job, single_list in zip(json_scripts, listing):
             link = single_list.find("a")
             text = re.sub(r'\w+\s+"(\w+)"\s+\w+', r" '\1' ", remove_newline(job.text))
-            job = json.loads(text)
+            job = json.loads(re.sub(r";\s*\"(.+)\"\.\s", r"“\1“:", text))
             experience = (
                 re.search(
                     r".+\s*Required Experience:\s*(?:<\/\w+>|)(.+\s*.+)(?:\s*<\w+>|)",

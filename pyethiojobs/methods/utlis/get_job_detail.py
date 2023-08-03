@@ -10,7 +10,13 @@ class GetJobsDetails(Scaffold):
     def _get_job_details(self, html) -> JobDetails:
         soup = self.soup(html)
         job = json.loads(
-            remove_newline(soup.find("script", {"type": "application/ld+json"}).text)
+            re.sub(
+                r";\s*\"(.+)\"\.\s",
+                r"“\1“:",
+                remove_newline(
+                    soup.find("script", {"type": "application/ld+json"}).text
+                ),
+            )
         )
         views = soup.find("span", {"class": "jobs_by"}).text
         job_id = int(re.search(r"(\d+)\s+\|", views).group(1))
