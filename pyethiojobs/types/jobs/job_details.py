@@ -37,3 +37,23 @@ class JobDetails:
         self.location = location
         self.type = type
         self.career_level = career_level
+
+    def dict(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "description": self.description,
+            "link": self.link,
+            "views": self.views,
+            "category": self.category,
+            "salary": self.salary,
+            "print_link": self.print_link,
+            "identifier": self.identifier.__dict__,
+            "date_posted": self.date_posted,
+            "valid_through": self.valid_through,
+            "hiring_organization": self.hiring_organization,
+            "location": self.location.__dict__,
+            "work_place": self.work_place,
+            "type": self.type,
+            "career_level": self.career_level,
+        }

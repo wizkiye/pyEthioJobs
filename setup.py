@@ -18,7 +18,6 @@ setup(
     install_requires=[
         "bs4>=0.0.1",
         "asyncio>=3.4.3",
-        "weasyprint>=59.0",
         "httpx>=0.24.1",
         "lxml>=4.9.3",
     ],

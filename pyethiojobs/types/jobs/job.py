@@ -1,6 +1,6 @@
 from typing import Union
 
-from pyethiojobs import types
+from pyethiojobs import types, pyethiojobs
 
 
 class Job:
@@ -18,7 +18,7 @@ class Job:
         location: "types.Location",
         work_place: Union[str, None],
         type: str,
-        base: "pyethiojobs.pyEthioJobs" = None,
+        base: "pyethiojobs.EthioJobs" = None,
     ):
         self.job_id = job_id
         self.experience = experience
@@ -34,10 +34,9 @@ class Job:
         self._base = base
         self.type = type
 
-    async def get_details(self):
+    async def get_details(self) -> "types.JobDetails":
         if self._base is not None:
-            res = await self._base._process_request(url=self.link)
-            return self._base._get_job_details(res.text)
+            return await self._base.get_job(self.job_id)
 
     def __repr__(self):
         return f"Job(title={self.title}, link={self.link})"
